@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+
+        //functie "getDigits" care primeste un sir de caractere si returneaza cifrele din sirul respectiv
+
+        function getDigits(x) {
+            let str = "";
+            for (let i = 0; i < x.length; i++) {
+                if (x[i] >= "0" && x[i] <= "9") {
+                    let t = x[i] - "0"
+                    str = str + t;
+                }
+            }
+
+            return str
+        }
+
+        //functie "getLetters" care primeste un sir de caractere si returneaza doar literele din sir
+
+        function getLetters(l) {
+            let letters = "";
+            for (let i = 0; i < l.length; i++) {
+                if ((l[i] >= "a" && l[i] <= "z") || (l[i] >= "A" && l[i] <= "Z")) {
+                    letters = letters + l[i];
+                }
+            }
+
+            return letters
+        }
+
+
+        //functie "getFirst5Letters" care primeste un sir de caractere si returneaza primele 5 litere
+
+        function getFirst5Letters(l) {
+            let getfirst = "";
+            for (let i = 0; i < l.length; i++) {
+                if ((l[i] >= "a" && l[i] <= "z") || (l[i] >= "A" && l[i] <= "Z")) {
+                    getfirst = getfirst.concat(l[i])
+                }
+            }
+
+            return getfirst.substring(0, 5)
+        }
+
+        // functie "concatenate" care primeste o lista de siruri de caractere si returneaza sirurile concatenate
+        function concatenate(x) {
+            let str = "";
+            for (let i = 0; i < x.length; i++) {
+                str = str.concat(x[i])
+            }
+
+            return str
+        }
+
+        //functie "getAllDigits" care primeste o lista de siruri de caractere si returneaza cifrele din toate sirurile
+
+        function getAllDigits(x) {
+            let getall = "";
+            for (let i = 0; i < x.length; i++) {
+                getall = getall.concat(getDigits(x[i]))
+            }
+
+            return getall
+        }
+
+        //functie "invertAllStrings" care primeste o lista de siruri de caractere si returneaza lista de siruri de caractere inversate
+
+        function invertStrings(x) {
+            let str = "";
+            for (let i = x.length - 1; i >= 0; i--) {
+                str = str.concat(x[i])
+            }
+
+            return str
+        }
+
+        function invertAllStrings(y) {
+            let arr = [];
+            for (let i = 0; i < y.length; i++) {
+                arr.push(invertStrings(y[i]))
+            }
+
+            return arr
+        }
+
+        //Calculeaza factorialul unui numar ("factorial")
+
+        function factorial(x) {
+            let produs = 1;
+            for (let i = x; i > 0; i--) {
+                produs = produs * i;
+            }
+
+            return produs
+        }
+
+        //Calculeaza cel mai mare divizor comun al 2 numere ("cmmdc")
+
+        function cmmdc(x, y) {
+            let min = 0;
+            if (x < y) {
+                min = x;
+            } else {
+                min = y;
+            }
+
+            let arr = [];
+            for (let i = 1; i <= min; i++) {
+                if ((x % i == 0) && (y % i == 0)) {
+                    arr.push(i)
+                }
+            }
+
+            return arr[arr.length - 1]
+        }
+
+        //Calculeaza cel mai mic multiplu comun al 2 numere ("cmmmc")
+
+        function cmmmc(x, y) {
+            let max = 0;
+            if (x > y) {
+                max = x;
+            } else {
+                max = y;
+            }
+
+            let count = 0;
+            let result = 0;
+            for (let i = max; count < 1; i++) {
+                if ((i % x == 0) && (i % y == 0)) {
+                    count = count + 1;
+                    result = i;
+                }
+            }
+
+            return result
+        }
+
+        //Returneaza un array care sa contina toti divizorii unui numar
+
+        function divizori(nr) {
+            let arr = [];
+            for (let i = 2; i < nr; i++) {
+                if (nr % i == 0) {
+                    arr.push(i)
+                }
+            }
+
+            return arr
+        }
+
+        //functie care verifica daca un numar este palindrom
+
+        function palindrom(x) {
+            let inv = 0;
+            let nr = x;
+            for (; x > 0;) {
+                let lastDigit = x % 10;
+                x = Math.floor(x / 10);
+                inv = inv * 10 + lastDigit;
+            }
+
+            return nr === inv;
+        }
+
+        //functie care sorteaza numerele pare dintr-un sir de numere primit ca parametru. ("sort")
+
+        function sort(arr) {
+            let arr1 = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] % 2 == 0) {
+                    arr1.push(arr[i])
+                }
+            }
+
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = i + 1; j < arr1.length; j++) {
+                    if (arr1[j] < arr1[i]) {
+                        let aux = arr1[i];
+                        arr1[i] = arr1[j];
+                        arr1[j] = aux;
+                    }
+                }
+            }
+
+            return arr1
+        }
+
+        //functie care sorteaza ascendent numerele pare si descendent numerele impare, in cadrul aceluiasi array primit ca parameru. ("sortAscDesc")
+
+        function sortImpare(arr) {
+            let arr1 = [];
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] % 2 == 1 || arr[i] % 2 == -1) {
+                    arr1.push(arr[i])
+                }
+            }
+
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = i + 1; j < arr1.length; j++) {
+                    if (arr1[j] > arr1[i]) {
+                        let aux = arr1[i];
+                        arr1[i] = arr1[j];
+                        arr1[j] = aux;
+                    }
+                }
+            }
+
+            return arr1
+        }
+
+        function sortAscDesc(arr) {
+            let arr1 = [];
+            let sort1 = sort(arr);
+            let impare = sortImpare(arr);
+            for (let i = 0; i < arr.length; i++) {
+            }
+
+            arr1 = arr1.concat(sort1, impare)
+            return arr1
+        }
+
+        function binarySearch(arr, x) {
+            let left = 0;
+            let right = arr.length - 1;
+            let middle = Math.floor((left + right) / 2);
+            while (left <= right) {
+                if (x === arr[middle]) {
+                    return true
+                } else if (x > arr[middle]) {
+                    left = middle + 1;
+                } else {
+                    right = middle - 1;
+                }
+
+                middle = Math.floor((left + right) / 2);
+            }
+
+            return false
+
+        }
+
+        function countBinarySearchRecursive(arr, l, r, n) {
+            if(l > r)
+            {
+                return 0;
+            }
+            
+            let middle = Math.floor((l + r) / 2);
+            if (n === arr[middle]) {
+                return 1
+            } else if (n > arr[middle]) {
+                return countBinarySearchRecursive(arr, middle + 1, r, n) + 1
+            } else {
+                return countBinarySearchRecursive(arr, l, middle - 1, n) + 1
+            }
+        }
+
+        function countBinarySearch(arr, n){
+            return countBinarySearchRecursive(arr, 0, arr.length -1, n);
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
